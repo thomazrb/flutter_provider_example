@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_example/models/settings.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
@@ -59,7 +61,10 @@ class SettingsPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      debugPrint('Ok!');
+                      var settings = context.read<Settings>();
+                      settings.name = nameController.text;
+                      settings.age = int.parse(ageController.text);
+                      Navigator.pop(context);
                     }
                   },
                   child: const Text('Save'),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_example/models/settings.dart';
 import 'package:flutter_provider_example/pages/settings_page.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,13 +17,13 @@ class HomePage extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Name',
-            style: TextStyle(fontSize: 50),
+          Consumer<Settings>(
+            builder: (context, settings, child) =>
+                Text(settings.name, style: const TextStyle(fontSize: 50)),
           ),
-          const Text(
-            'Age',
-            style: TextStyle(fontSize: 50),
+          Consumer<Settings>(
+            builder: (context, settings, child) =>
+                Text('${settings.age}', style: const TextStyle(fontSize: 50)),
           ),
           const SizedBox(height: 20),
           ElevatedButton(
